@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
             ArrayList<list_Item> Items = new ArrayList<list_Item>();
 
             while ((mLine = reader.readLine()) != null) {
-
                 String[]   elements = mLine.split("#");
                 Items.add(new list_Item(elements[0], elements[1]));
             }//end while
@@ -62,11 +61,10 @@ public class MainActivity extends AppCompatActivity {
 
             ListView listView = findViewById(R.id.list_view);
             listView.setAdapter(myAdapter);
-            SearchView searchView = findViewById(R.id.search_view);
         }//end try
 
         catch (IOException e) {
-            e.printStackTrace();
+            e.getMessage();
         }//end catch
 
         finally {
@@ -75,14 +73,14 @@ public class MainActivity extends AppCompatActivity {
                     reader.close();
                 }//end try
                 catch (IOException e) {
-                    e.printStackTrace();
+                    e.getMessage();
                 }//end catch
 
             }//end if
 
         }//end finally
 
-    }
+    }// end onCreate
 
     class myAdapter extends BaseAdapter {
         ArrayList<list_Item> Items = new ArrayList<list_Item>();
