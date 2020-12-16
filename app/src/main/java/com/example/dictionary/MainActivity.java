@@ -3,6 +3,7 @@ package com.example.dictionary;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Context;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     myAdapter myAdapter;
     ArrayList<list_Item> Items;
     ListView listView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 Items.add(new list_Item(elements[0], elements[1]));
             }//end while
 
-            myAdapter = new myAdapter(getApplicationContext(),Items);
+            myAdapter = new myAdapter(getApplicationContext(), Items);
 
             listView = findViewById(R.id.list_view);
             listView.setAdapter(myAdapter);
@@ -87,21 +90,22 @@ public class MainActivity extends AppCompatActivity {
 
         }//end finally
 
-            searchView = findViewById(R.id.search_view);
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-                    // TODO: filter list using query
-              myAdapter.getFilter().filter(query);
-                    // update adapter using list then refresh it.
-                    return false;
-                }
-                @Override
-                public boolean onQueryTextChange(String newText) {
-                    return false;
-                }
-            });
+        searchView = findViewById(R.id.search_view);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // TODO: filter list using query
+                android.widget.Toast.makeText(MainActivity.this, "query", android.widget.Toast.LENGTH_SHORT).show();
+                myAdapter.getFilter().filter(query);
+                // update adapter using list then refresh it.
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
 
 
     }// end onCreate
@@ -110,9 +114,12 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList<list_Item> Items = new ArrayList<list_Item>();
 
-        public myAdapter( Context context,ArrayList<list_Item> Items) {
+        ArrayList<list_Item>  filteredData;
+
+        public myAdapter(Context context, ArrayList<list_Item> Items) {
             super(context, 0);
             this.Items = Items;
+            this.filteredData = Items;
         }//end const
 
         @NonNull
@@ -124,33 +131,58 @@ public class MainActivity extends AppCompatActivity {
 
                     ArrayList<list_Item> elements = new ArrayList();
 
-                    if(constraint == null || constraint.length() == 0 ){
-                        elements.addAll(Items);
-                    }else{
-                        String filterParent = constraint.toString().toLowerCase();
-                        for(list_Item element : Items){
-                            if ((element.getNameEng().toLowerCase().contains(filterParent))){
-                                elements.add(element);
-                            }else{
-                                if (element.getNameAr().toLowerCase().contains(filterParent)){
-                                    elements.add(element);
+                    FilterResults results = new FilterResults();
+
+                    if (constraint == null || constraint.length() == 0) {
+                        results.values = Items;
+                        results.count = Items.size();
+                    } else {
+                        ArrayList<list_Item>  filterResultsData = new   ArrayList<list_Item> ();
+
+                       /* for(ArrayList<list_Item> data : Items)
+                        {
+                            //In this loop, you'll filter through originalData and compare each item to charSequence.
+                            //If you find a match, add it to your new ArrayList
+                            //I'm not sure how you're going to do comparison, so you'll need to fill out this conditional
+                            if(data. data matches your filter criteria)
+                            {
+                                filterResultsData.add(data);
+                            }
+                        }*/
+
+                        //String filterParent = constraint.toString().toLowerCase();
+                        for (list_Item element : Items) {
+                            if ((element.getNameEng().toLowerCase().contains(constraint))) {
+                                filterResultsData.add(element);
+                            } else {
+                                if (element.getNameAr().toLowerCase().contains(constraint)) {
+                                    filterResultsData.add(element);
                                 }
                             }
                         }
+
+                        results.values = filterResultsData;
+                        results.count = filterResultsData.size();
                     }//end else
 
-                    FilterResults results = new FilterResults();
+                   // FilterResults results = new FilterResults();
 
-                    results.count = elements.size();
-                    results.values = elements;
+                   // results.count = elements.size();
+                   // results.values = elements;
+
+                   // results.values = filterResultsData;
+                   // results.count = filteredResultsData.size();
 
                     return results;
                 }
 
                 @Override
                 protected void publishResults(CharSequence constraint, FilterResults results) {
-                    clear();
+                  /*  clear();
+                    System.out.println(results.values.toString());
                     addAll((ArrayList<list_Item>) results.values);
+                    notifyDataSetChanged();*/
+                    filteredData = (ArrayList<list_Item> ) results.values;
                     notifyDataSetChanged();
                 }
             };
@@ -158,12 +190,12 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return Items.size();
+            return filteredData.size();
         }//end getCount
 
         @Override
         public list_Item getItem(int position) {
-            return Items.get(position);
+            return filteredData.get(position);
         }//end getItem
 
 
@@ -178,10 +210,10 @@ public class MainActivity extends AppCompatActivity {
             View view1 = lInflater.inflate(R.layout.row_view, null);
 
             TextView nameEng = view1.findViewById(R.id.name_eng);
-            nameEng.setText(Items.get(i).getNameEng());
+            nameEng.setText(filteredData.get(i).getNameEng());
 
             TextView nameAr = view1.findViewById(R.id.name_ar);
-            nameAr.setText(Items.get(i).getNameAr());
+            nameAr.setText(filteredData.get(i).getNameAr());
 
             return view1;
         }//end getView
