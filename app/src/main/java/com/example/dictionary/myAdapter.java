@@ -104,8 +104,8 @@ public class myAdapter extends ArrayAdapter<list_Item> {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        LayoutInflater lInflater = null;
 
+        LayoutInflater lInflater = LayoutInflater.from(getContext());
         View view1 = lInflater.inflate(R.layout.row_view, null);
 
         TextView nameEng = view1.findViewById(R.id.name_eng);
