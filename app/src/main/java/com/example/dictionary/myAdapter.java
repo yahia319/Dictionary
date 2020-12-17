@@ -7,9 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
-
 import java.util.ArrayList;
 
 public class myAdapter extends ArrayAdapter<list_Item> {
@@ -30,8 +28,6 @@ public class myAdapter extends ArrayAdapter<list_Item> {
         return new Filter() {
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
-
-                ArrayList<list_Item> elements = new ArrayList();
 
                 FilterResults results = new FilterResults();
 

@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 // TODO: filter list using query
-                android.widget.Toast.makeText(MainActivity.this, "query", android.widget.Toast.LENGTH_SHORT).show();
+                android.widget.Toast.makeText(MainActivity.this, ""+query, android.widget.Toast.LENGTH_SHORT).show();
                 myAdapter.getFilter().filter(query);
                 // update adapter using list then refresh it.
                 return false;
@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                myAdapter.getFilter().filter(newText);
                 return false;
             }
         });
