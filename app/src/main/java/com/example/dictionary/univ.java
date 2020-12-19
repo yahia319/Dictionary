@@ -20,8 +20,8 @@ public class univ {
     private String frenchNormalized;
 
     public univ(String arabicNormalized, String frenchNormalized) {
-        this.arabic = arabicNormalized;
-        this.french = frenchNormalized;
+        this.arabicNormalized = arabicNormalized;
+        this.frenchNormalized = frenchNormalized;
     }
 
     public int getId() {
