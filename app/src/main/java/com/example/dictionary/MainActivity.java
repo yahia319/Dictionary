@@ -39,13 +39,15 @@ public class MainActivity extends AppCompatActivity {
         textViewReverse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if ((textViewLanguage1.getText()).equals("English")) {
+                if ((textViewLanguage1.getText()).equals("French")) {
                     textViewLanguage1.setText("Arabic");
-                    textViewLanguage2.setText("English");
+                    textViewLanguage2.setText("French");
+                    searchView.setQueryHint("French...");
                 }//end if
                 else {
-                    textViewLanguage1.setText("English");
+                    textViewLanguage1.setText("French");
                     textViewLanguage2.setText("Arabic");
+                    searchView.setQueryHint("Arabic...");
                 }//end else
             }//end onClick
 
