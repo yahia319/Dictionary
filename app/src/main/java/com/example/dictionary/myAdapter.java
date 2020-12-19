@@ -57,9 +57,10 @@ public class myAdapter extends ArrayAdapter<list_Item> {
                                 filterResultsData.add(element);
                             }
                         }
-                    }
 
-                    results.values = filterResultsData;
+
+
+                           }results.values = filterResultsData;
                     results.count = filterResultsData.size();
                 }//end else
 

@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         });//end setOnClickListener
 
-        readerFile("myFile.txt");
+        fileReader("myFile.txt");
 
         searchView = findViewById(R.id.search_view);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
     }// end onCreate
 
-    public void readerFile(String file){
+    public void fileReader(String file){
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(new InputStreamReader(getAssets().open(""+file)));
