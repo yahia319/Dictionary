@@ -6,14 +6,14 @@ import androidx.room.Query;
 import java.util.ArrayList;
 
 @Dao
-public interface univDao {
+public interface UnivDao {
 
     @Query("SELECT * FROM univ WHERE ARABIC_NORMALIZED LIKE:arabic")
-ArrayList<univ> getArabicTranslate(String arabic);
+    ArrayList<Univ> getArabicTranslate(String arabic);
 
 
 
     @Query("SELECT * FROM univ WHERE FRENCH_NORMALIZED LIKE:french")
-    ArrayList<univ> getFrenchTranslate(String french);
+    ArrayList<Univ> getFrenchTranslate(String french);
 
 }

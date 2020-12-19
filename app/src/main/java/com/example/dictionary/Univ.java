@@ -3,8 +3,8 @@ package com.example.dictionary;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 
-@Entity
-public class univ {
+@Entity(tableName = "univ")
+public class Univ {
 
     @ColumnInfo(name = "ID")
     private int id ;
@@ -19,7 +19,7 @@ public class univ {
     @ColumnInfo(name = "FRENCH_NORMALIZED")
     private String frenchNormalized;
 
-    public univ(String arabicNormalized, String frenchNormalized) {
+    public Univ(String arabicNormalized, String frenchNormalized) {
         this.arabicNormalized = arabicNormalized;
         this.frenchNormalized = frenchNormalized;
     }

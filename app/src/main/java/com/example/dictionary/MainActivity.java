@@ -1,17 +1,11 @@
 package com.example.dictionary;
 
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
-import android.widget.ArrayAdapter;
-import android.widget.Filter;
 import android.widget.SearchView;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -23,8 +17,8 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     TextView textViewLanguage1, textViewLanguage2, textViewReverse;
     SearchView searchView;
-    myAdapter myAdapter;
-    ArrayList<list_Item> Items;
+    MyAdapter myAdapter;
+    ArrayList<List_item> Items;
     ListView listView;
 
     @Override
@@ -83,14 +77,14 @@ public class MainActivity extends AppCompatActivity {
             String mLine;
 
 
-            Items = new ArrayList<list_Item>();
+            Items = new ArrayList<List_item>();
 
             while ((mLine = reader.readLine()) != null) {
                 String[] elements = mLine.split("#");
-                Items.add(new list_Item(elements[0], elements[1]));
+                Items.add(new List_item(elements[0], elements[1]));
             }//end while
 
-            myAdapter = new myAdapter(getApplicationContext(), Items);
+            myAdapter = new MyAdapter(getApplicationContext(), Items);
 
             listView = findViewById(R.id.list_view);
             listView.setAdapter(myAdapter);

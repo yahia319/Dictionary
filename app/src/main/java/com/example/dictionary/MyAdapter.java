@@ -10,13 +10,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import java.util.ArrayList;
 
-public class myAdapter extends ArrayAdapter<list_Item> {
+public class MyAdapter extends ArrayAdapter<List_item> {
 
-    ArrayList<list_Item> Items = new ArrayList<list_Item>();
+    ArrayList<List_item> Items = new ArrayList<List_item>();
 
-    ArrayList<list_Item>  filteredData;
+    ArrayList<List_item>  filteredData;
 
-    public myAdapter(Context context, ArrayList<list_Item> Items) {
+    public MyAdapter(Context context, ArrayList<List_item> Items) {
         super(context, 0);
         this.Items = Items;
         this.filteredData = Items;
@@ -35,7 +35,7 @@ public class myAdapter extends ArrayAdapter<list_Item> {
                     results.values = Items;
                     results.count = Items.size();
                 } else {
-                    ArrayList<list_Item>  filterResultsData = new   ArrayList<list_Item> ();
+                    ArrayList<List_item>  filterResultsData = new   ArrayList<List_item> ();
 
                        /* for(ArrayList<list_Item> data : Items)
                         {
@@ -49,7 +49,7 @@ public class myAdapter extends ArrayAdapter<list_Item> {
                         }*/
 
                     //String filterParent = constraint.toString().toLowerCase();
-                    for (list_Item element : Items) {
+                    for (List_item element : Items) {
                         if ((element.getNameEng().toLowerCase().contains(constraint))) {
                             filterResultsData.add(element);
                         } else {
@@ -81,7 +81,7 @@ public class myAdapter extends ArrayAdapter<list_Item> {
                     System.out.println(results.values.toString());
                     addAll((ArrayList<list_Item>) results.values);
                     notifyDataSetChanged();*/
-                filteredData = (ArrayList<list_Item> ) results.values;
+                filteredData = (ArrayList<List_item> ) results.values;
                 notifyDataSetChanged();
             }
         };
@@ -93,7 +93,7 @@ public class myAdapter extends ArrayAdapter<list_Item> {
     }//end getCount
 
     @Override
-    public list_Item getItem(int position) {
+    public List_item getItem(int position) {
         return filteredData.get(position);
     }//end getItem
 

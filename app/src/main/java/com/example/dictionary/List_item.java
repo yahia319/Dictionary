@@ -1,11 +1,11 @@
 package com.example.dictionary;
 
-public class list_Item {
+public class List_item {
 
     private String nameEng;
     private String nameAr ;
 
-    public list_Item(String nameEng,String nameAr){
+    public List_item(String nameEng, String nameAr){
         this.nameEng = nameEng;
         this.nameAr = nameAr ;
     }
