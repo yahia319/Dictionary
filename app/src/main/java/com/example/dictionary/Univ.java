@@ -2,10 +2,11 @@ package com.example.dictionary;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 @Entity(tableName = "univ")
 public class Univ {
-
+    @PrimaryKey
     @ColumnInfo(name = "ID")
     private int id ;
     @ColumnInfo(name = "ARABIC")

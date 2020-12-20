@@ -36,12 +36,12 @@ public class MainActivity extends AppCompatActivity {
                 if ((textViewLanguage1.getText()).equals("French")) {
                     textViewLanguage1.setText("Arabic");
                     textViewLanguage2.setText("French");
-                    searchView.setQueryHint("French...");
+                    searchView.setQueryHint("Arabic...");
                 }//end if
                 else {
                     textViewLanguage1.setText("French");
                     textViewLanguage2.setText("Arabic");
-                    searchView.setQueryHint("Arabic...");
+                    searchView.setQueryHint("French...");
                 }//end else
             }//end onClick
 
