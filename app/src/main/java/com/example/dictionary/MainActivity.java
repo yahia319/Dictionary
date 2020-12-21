@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
+import java.io.Console;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -53,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                // TODO: filter list using query
-                android.widget.Toast.makeText(MainActivity.this, ""+query, android.widget.Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(MainActivity.this, ""+query, Toast.LENGTH_SHORT).show();
                 myAdapter.getFilter().filter(query);
                 // update adapter using list then refresh it.
                 return false;
@@ -67,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+     UnivRoomDb.getInstance(this).univDao().getArabicTranslate("توافق");
 
     }// end onCreate
 
@@ -109,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
         }//end finally
     }
+
 
 
 }//end class

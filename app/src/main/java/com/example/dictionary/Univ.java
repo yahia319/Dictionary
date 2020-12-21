@@ -17,7 +17,7 @@ public class Univ {
     private String english;
     @ColumnInfo(name = "ARABIC_NORMALIZED")
     private String  arabicNormalized;
-    @ColumnInfo(name = "FRENCH_NORMALIZED")
+    @ColumnInfo(name ="FRENCH_NORMALIZED")
     private String frenchNormalized;
 
     public Univ(String arabicNormalized, String frenchNormalized) {
