@@ -12,7 +12,7 @@ public interface UnivDao {
     List<Univ> getArabicTranslate(String arabic);
 
 
-    @Query("SELECT  * FROM univ WHERE FRENCH_NORMALIZED LIKE:french")
-    List<Univ> getFrenchTranslate(String french);
+    @Query("SELECT *  FROM univ WHERE FRENCH_NORMALIZED LIKE:french")
+   List<Univ> getFrenchTranslate(String french);
 
 }

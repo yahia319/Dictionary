@@ -50,7 +50,7 @@ public class MyAdapter extends ArrayAdapter<List_item> {
 
                     //String filterParent = constraint.toString().toLowerCase();
                     for (List_item element : Items) {
-                        if ((element.getNameEng().toLowerCase().contains(constraint))) {
+                        if ((element.getNameFr().toLowerCase().contains(constraint))) {
                             filterResultsData.add(element);
                         } else {
                             if (element.getNameAr().toLowerCase().contains(constraint)) {
@@ -110,7 +110,7 @@ public class MyAdapter extends ArrayAdapter<List_item> {
         View view1 = lInflater.inflate(R.layout.row_view, null);
 
         TextView nameEng = view1.findViewById(R.id.name_eng);
-        nameEng.setText(filteredData.get(i).getNameEng());
+        nameEng.setText(filteredData.get(i).getNameFr());
 
         TextView nameAr = view1.findViewById(R.id.name_ar);
         nameAr.setText(filteredData.get(i).getNameAr());

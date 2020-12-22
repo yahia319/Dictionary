@@ -3,6 +3,7 @@ package com.example.dictionary;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.AsyncTask;
 import android.widget.SearchView;
 import android.os.Bundle;
 import android.view.View;
@@ -10,11 +11,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.Console;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     TextView textViewLanguage1, textViewLanguage2, textViewReverse;
@@ -49,70 +47,49 @@ public class MainActivity extends AppCompatActivity {
 
         });//end setOnClickListener
 
-        fileReader("myFile.txt");
-
         searchView = findViewById(R.id.search_view);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
 
-                Toast.makeText(MainActivity.this, ""+query, Toast.LENGTH_SHORT).show();
-                myAdapter.getFilter().filter(query);
-                // update adapter using list then refresh it.
+                Toast.makeText(MainActivity.this, "" + query, Toast.LENGTH_SHORT).show();
+
+                MyTask myTask = new MyTask();
+                myTask.execute(query);
+                listView = findViewById(R.id.list_view);
+                listView.setAdapter(myAdapter);
+
+
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                myAdapter.getFilter().filter(newText);
+
                 return false;
             }
         });
 
-     UnivRoomDb.getInstance(this).univDao().getArabicTranslate("توافق");
+
 
     }// end onCreate
 
-    public void fileReader(String file){
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(new InputStreamReader(getAssets().open(""+file)));
-            String mLine;
 
 
-            Items = new ArrayList<List_item>();
+private  class  MyTask extends AsyncTask<String,String,List<Univ>>{
+    @Override
+    protected List<Univ> doInBackground(String... strings) {
 
-            while ((mLine = reader.readLine()) != null) {
-                String[] elements = mLine.split("#");
-                Items.add(new List_item(elements[0], elements[1]));
-            }//end while
+        List<Univ> mylist =  UnivRoomDb.getInstance(getApplicationContext()).univDao().getArabicTranslate(strings[0]);
 
-            myAdapter = new MyAdapter(getApplicationContext(), Items);
-
-            listView = findViewById(R.id.list_view);
-            listView.setAdapter(myAdapter);
-
-        }//end try
-
-        catch (IOException e) {
-            e.getMessage();
-        }//end catch
-
-        finally {
-            //
-            if (reader != null) {
-                try {
-                    reader.close();
-                }//end try
-                catch (IOException e) {
-                    e.getMessage();
-                }//end catch
-
-            }//end if
-
-        }//end finally
+        return mylist;
     }
 
-
-
+    @Override
+    protected void onPostExecute(List<Univ> univs) {
+        super.onPostExecute(univs);
+        Items.add(new List_item(univs.get(0).getFrench(),univs.get(0).getArabic()));
+        myAdapter = new MyAdapter(getApplicationContext(),Items);
+    }
+}
 }//end class

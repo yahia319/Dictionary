@@ -2,20 +2,20 @@ package com.example.dictionary;
 
 public class List_item {
 
-    private String nameEng;
+    private String nameFr;
     private String nameAr ;
 
-    public List_item(String nameEng, String nameAr){
-        this.nameEng = nameEng;
+    public List_item(String nameFr, String nameAr){
+        this.nameFr = nameFr;
         this.nameAr = nameAr ;
     }
 
-    public String getNameEng() {
-        return nameEng;
+    public String getNameFr() {
+        return nameFr;
     }
 
-    public void setNameEng(String nameEng) {
-        this.nameEng = nameEng;
+    public void setNameFr(String nameFr) {
+        this.nameFr = nameFr;
     }
 
 

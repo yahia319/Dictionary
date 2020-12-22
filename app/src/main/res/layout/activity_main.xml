@@ -57,6 +57,7 @@
         android:layout_marginRight="12dp"
         android:background="@drawable/custem_input"
         android:paddingEnd="12dp"
+        android:clickable="true"
         />
 
     <ListView
