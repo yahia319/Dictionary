@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 MyTask myTask = new MyTask();
                 myTask.execute(query);
 
+
                 return false;
             }
 
@@ -81,6 +83,9 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(univs);
             Items.add(new List_item(univs.get(0).getFrench(), univs.get(0).getArabic()));
             myAdapter = new MyAdapter(getApplicationContext(), Items);
+
+            listView = findViewById(R.id.list_view);
+            listView.setAdapter(myAdapter);
         }
     }
 
