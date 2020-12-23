@@ -7,14 +7,16 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 
 public class MyAdapter extends ArrayAdapter<List_item> {
 
     ArrayList<List_item> Items = new ArrayList<List_item>();
 
-    ArrayList<List_item>  filteredData;
+    ArrayList<List_item> filteredData;
 
     public MyAdapter(Context context, ArrayList<List_item> Items) {
         super(context, 0);
@@ -35,7 +37,7 @@ public class MyAdapter extends ArrayAdapter<List_item> {
                     results.values = Items;
                     results.count = Items.size();
                 } else {
-                    ArrayList<List_item>  filterResultsData = new   ArrayList<List_item> ();
+                    ArrayList<List_item> filterResultsData = new ArrayList<List_item>();
 
                        /* for(ArrayList<list_Item> data : Items)
                         {
@@ -59,8 +61,8 @@ public class MyAdapter extends ArrayAdapter<List_item> {
                         }
 
 
-
-                           }results.values = filterResultsData;
+                    }
+                    results.values = filterResultsData;
                     results.count = filterResultsData.size();
                 }//end else
 
@@ -81,7 +83,7 @@ public class MyAdapter extends ArrayAdapter<List_item> {
                     System.out.println(results.values.toString());
                     addAll((ArrayList<list_Item>) results.values);
                     notifyDataSetChanged();*/
-                filteredData = (ArrayList<List_item> ) results.values;
+                filteredData = (ArrayList<List_item>) results.values;
                 notifyDataSetChanged();
             }
         };

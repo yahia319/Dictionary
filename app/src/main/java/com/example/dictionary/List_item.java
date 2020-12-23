@@ -3,11 +3,11 @@ package com.example.dictionary;
 public class List_item {
 
     private String nameFr;
-    private String nameAr ;
+    private String nameAr;
 
-    public List_item(String nameFr, String nameAr){
+    public List_item(String nameFr, String nameAr) {
         this.nameFr = nameFr;
-        this.nameAr = nameAr ;
+        this.nameAr = nameAr;
     }
 
     public String getNameFr() {

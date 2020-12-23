@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey;
 public class Univ {
     @PrimaryKey
     @ColumnInfo(name = "ID")
-    private int id ;
+    private int id;
     @ColumnInfo(name = "ARABIC")
     private String arabic;
     @ColumnInfo(name = "FRENCH")
@@ -16,13 +16,15 @@ public class Univ {
     @ColumnInfo(name = "ENGLISH")
     private String english;
     @ColumnInfo(name = "ARABIC_NORMALIZED")
-    private String  arabicNormalized;
-    @ColumnInfo(name ="FRENCH_NORMALIZED")
+    private String arabicNormalized;
+    @ColumnInfo(name = "FRENCH_NORMALIZED")
     private String frenchNormalized;
 
     public Univ(String arabicNormalized, String frenchNormalized) {
+
         this.arabicNormalized = arabicNormalized;
         this.frenchNormalized = frenchNormalized;
+
     }
 
     public int getId() {

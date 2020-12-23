@@ -1,6 +1,5 @@
 package com.example.dictionary;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.AsyncTask;
@@ -9,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     TextView textViewLanguage1, textViewLanguage2, textViewReverse;
     SearchView searchView;
     MyAdapter myAdapter;
-    ArrayList<List_item> Items;
+    ArrayList<List_item> Items = new ArrayList<List_item>();
     ListView listView;
 
     @Override
@@ -52,13 +50,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
 
-                Toast.makeText(MainActivity.this, "" + query, Toast.LENGTH_SHORT).show();
-
                 MyTask myTask = new MyTask();
                 myTask.execute(query);
-                listView = findViewById(R.id.list_view);
-                listView.setAdapter(myAdapter);
-
 
                 return false;
             }
@@ -66,30 +59,30 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
 
+
                 return false;
             }
         });
 
 
-
     }// end onCreate
 
+    private class MyTask extends AsyncTask<String, String, List<Univ>> {
+        @Override
+        protected List<Univ> doInBackground(String... strings) {
 
+            List<Univ> mylist = UnivRoomDb.getInstance(getApplicationContext()).univDao().getArabicTranslate(strings[0]);
 
-private  class  MyTask extends AsyncTask<String,String,List<Univ>>{
-    @Override
-    protected List<Univ> doInBackground(String... strings) {
+            return mylist;
+        }
 
-        List<Univ> mylist =  UnivRoomDb.getInstance(getApplicationContext()).univDao().getArabicTranslate(strings[0]);
-
-        return mylist;
+        @Override
+        protected void onPostExecute(List<Univ> univs) {
+            super.onPostExecute(univs);
+            Items.add(new List_item(univs.get(0).getFrench(), univs.get(0).getArabic()));
+            myAdapter = new MyAdapter(getApplicationContext(), Items);
+        }
     }
 
-    @Override
-    protected void onPostExecute(List<Univ> univs) {
-        super.onPostExecute(univs);
-        Items.add(new List_item(univs.get(0).getFrench(),univs.get(0).getArabic()));
-        myAdapter = new MyAdapter(getApplicationContext(),Items);
-    }
-}
+
 }//end class
