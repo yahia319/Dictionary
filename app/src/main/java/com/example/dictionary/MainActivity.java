@@ -73,19 +73,19 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected List<Univ> doInBackground(String... strings) {
 
-            List<Univ> mylist = UnivRoomDb.getInstance(getApplicationContext()).univDao().getArabicTranslate(strings[0]);
-
+            List<Univ> mylist = UnivRoomDb.getInstance(getApplicationContext()).univDao().getAll();
+            System.out.println(">>" + mylist.size());
             return mylist;
         }
 
         @Override
         protected void onPostExecute(List<Univ> univs) {
             super.onPostExecute(univs);
-            Items.add(new List_item(univs.get(0).getFrench(), univs.get(0).getArabic()));
-            myAdapter = new MyAdapter(getApplicationContext(), Items);
+           // Items.add(new List_item(univs.get(0).getFrench(), univs.get(0).getArabic()));
+           // myAdapter = new MyAdapter(getApplicationContext(), Items);
 
-            listView = findViewById(R.id.list_view);
-            listView.setAdapter(myAdapter);
+          //  listView = findViewById(R.id.list_view);
+           // listView.setAdapter(myAdapter);
         }
     }
 

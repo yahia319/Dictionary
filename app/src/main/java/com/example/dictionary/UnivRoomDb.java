@@ -19,7 +19,10 @@ public abstract class UnivRoomDb extends RoomDatabase {
 
     public static synchronized UnivRoomDb getInstance(Context context) {
         if (instance == null) {
-            instance = Room.databaseBuilder(context.getApplicationContext(), UnivRoomDb.class, "univ_database.db").fallbackToDestructiveMigration().build();
+            instance = Room.databaseBuilder(context.getApplicationContext(), UnivRoomDb.class, "univ_database.db")
+                    .createFromAsset("univ_database.db")
+                    .build();
+            //instance = Room.databaseBuilder(context.getApplicationContext(), UnivRoomDb.class, "univ_database.db").fallbackToDestructiveMigration().build();
         }// end if
         return instance;
     }// end getInstance
