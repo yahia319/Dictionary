@@ -1,0 +1,27 @@
+Index: app/src/main/java/com/example/dictionary/UnivRoomDb.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.dictionary;\n\nimport android.content.Context;\n\nimport androidx.room.Database;\nimport androidx.room.Room;\nimport androidx.room.RoomDatabase;\n\nimport java.util.ArrayList;\n\n@Database(entities = Univ.class, version = 1)\npublic abstract class UnivRoomDb extends RoomDatabase {\n    private static UnivRoomDb instance;\n\n\n    public abstract UnivDao univDao();\n\n    //SingleTon\n\n    public static synchronized UnivRoomDb getInstance(Context context) {\n        if (instance == null) {\n            instance = Room.databaseBuilder(context.getApplicationContext(), UnivRoomDb.class, \"univ_database.db\").fallbackToDestructiveMigration().build();\n        }// end if\n        return instance;\n    }// end getInstance\n\n\n}//end class\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/dictionary/UnivRoomDb.java	(revision 99761ac2c86e4ff4aeb35d1ca4c4f936c1254870)
++++ app/src/main/java/com/example/dictionary/UnivRoomDb.java	(date 1608760589000)
+@@ -6,8 +6,6 @@
+ import androidx.room.Room;
+ import androidx.room.RoomDatabase;
+ 
+-import java.util.ArrayList;
+-
+ @Database(entities = Univ.class, version = 1)
+ public abstract class UnivRoomDb extends RoomDatabase {
+     private static UnivRoomDb instance;
+@@ -19,7 +17,7 @@
+ 
+     public static synchronized UnivRoomDb getInstance(Context context) {
+         if (instance == null) {
+-            instance = Room.databaseBuilder(context.getApplicationContext(), UnivRoomDb.class, "univ_database.db").fallbackToDestructiveMigration().build();
++            instance = Room.databaseBuilder(context.getApplicationContext(), UnivRoomDb.class, "univlexique.db").fallbackToDestructiveMigration().build();
+         }// end if
+         return instance;
+     }// end getInstance

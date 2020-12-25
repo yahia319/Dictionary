@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         protected List<Univ> doInBackground(String... strings) {
 
             List<Univ> mylist = UnivRoomDb.getInstance(getApplicationContext()).univDao().getAll();
-            System.out.println(">>" + mylist.size());
+            System.out.println(">> you have " + mylist.size()+" item");
             return mylist;
         }
 
