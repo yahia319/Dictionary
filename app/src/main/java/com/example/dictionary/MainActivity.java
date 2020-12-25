@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) {
                 Items.clear();
                 MyTask myTask = new MyTask();
-                myTask.execute(query);
+                myTask.execute("%"+query+"%");
                 return false;
             }
 
