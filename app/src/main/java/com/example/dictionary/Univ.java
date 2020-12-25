@@ -3,20 +3,26 @@ package com.example.dictionary;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
+import androidx.annotation.NonNull;
 @Entity(tableName = "univ")
 public class Univ {
+
     @PrimaryKey
     @ColumnInfo(name = "ID")
     private int id;
+    @NonNull
     @ColumnInfo(name = "ARABIC")
     private String arabic;
+    @NonNull
     @ColumnInfo(name = "FRENCH")
     private String french;
+    @NonNull
     @ColumnInfo(name = "ENGLISH")
     private String english;
+    @NonNull
     @ColumnInfo(name = "ARABIC_NORMALIZED")
     private String arabicNormalized;
+    @NonNull
     @ColumnInfo(name = "FRENCH_NORMALIZED")
     private String frenchNormalized;
 
